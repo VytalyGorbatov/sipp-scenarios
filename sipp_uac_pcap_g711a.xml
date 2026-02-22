@@ -25,15 +25,15 @@
   <send retrans="500">
     <![CDATA[
 
-      INVITE sip:[service]@[remote_ip]:[remote_port] SIP/2.0
+      INVITE sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port] SIP/2.0
       Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-      From: sipp <sip:sipp@[local_ip]:[local_port]>;tag=[pid]SIPpTag09[call_number]
-      To: sut <sip:[service]@[remote_ip]:[remote_port]>
+      From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag09[call_number]
+      To: "[field0 file="callee.csv"]" <sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port]>
       Call-ID: [call_id]
       CSeq: 1 INVITE
-      Contact: sip:sipp@[local_ip]:[local_port]
+      Contact: sip:[field1 file="caller.csv"]@[local_ip]:[local_port]
       Max-Forwards: 70
-      Subject: Performance Test
+      Subject:[field0 file="subject.csv"]
       Content-Type: application/sdp
       Content-Length: [len]
 
@@ -67,15 +67,15 @@
   <send>
     <![CDATA[
 
-      ACK sip:[service]@[remote_ip]:[remote_port] SIP/2.0
+      ACK sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port] SIP/2.0
       Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-      From: sipp <sip:sipp@[local_ip]:[local_port]>;tag=[pid]SIPpTag09[call_number]
-      To: sut <sip:[service]@[remote_ip]:[remote_port]>[peer_tag_param]
+      From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag09[call_number]
+      To: "[field0 file="callee.csv"]" <sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port]>[peer_tag_param]
       Call-ID: [call_id]
       CSeq: 1 ACK
-      Contact: sip:sipp@[local_ip]:[local_port]
+      Contact: sip:[field1 file="caller.csv"]@[local_ip]:[local_port]
       Max-Forwards: 70
-      Subject: Performance Test
+      Subject:[field0 file="subject.csv"]
       Content-Length: 0
 
     ]]>
@@ -84,7 +84,7 @@
   <!-- Play a pre-recorded PCAP file (RTP stream)                       -->
   <nop>
     <action>
-      <exec play_pcap_audio="g711a.pcap"/>
+      <exec play_pcap_audio="../g711a.pcap"/>
     </action>
   </nop>
 
@@ -96,15 +96,15 @@
   <send retrans="500">
     <![CDATA[
 
-      BYE sip:[service]@[remote_ip]:[remote_port] SIP/2.0
+      BYE sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port] SIP/2.0
       Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-      From: sipp <sip:sipp@[local_ip]:[local_port]>;tag=[pid]SIPpTag09[call_number]
-      To: sut <sip:[service]@[remote_ip]:[remote_port]>[peer_tag_param]
+      From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag09[call_number]
+      To: "[field0 file="callee.csv"]" <sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port]>[peer_tag_param]
       Call-ID: [call_id]
       CSeq: 2 BYE
-      Contact: sip:sipp@[local_ip]:[local_port]
+      Contact: sip:[field1 file="caller.csv"]@[local_ip]:[local_port]
       Max-Forwards: 70
-      Subject: Performance Test
+      Subject:[field0 file="subject.csv"]
       Content-Length: 0
 
     ]]>

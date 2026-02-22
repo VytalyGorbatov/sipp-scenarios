@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+
+<!-- Positive UAC scenario sending OPTIONS within an established dialog. -->
+
+<scenario name="UAC OPTIONS In-Dialog">
+  <nop>
+    <action>
+      <gettimeofday assign_to="secs,usecs" />
+      <assignstr assign_to="secs_str" value="[$secs]" />
+      <assignstr assign_to="usecs_str" value="[$usecs]" />
+      <ereg regexp="([0-9]+)\." search_in="var" variable="secs_str"  check_it="true" assign_to="dummy,secs_int"/>
+      <ereg regexp="([0-9]+)\." search_in="var" variable="usecs_str" check_it="true" assign_to="dummy,usecs_int"/>
+    </action>
+  </nop>
+
+  <send retrans="500">
+    <![CDATA[
+
+      INVITE sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port] SIP/2.0
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+      From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag00[call_number]
+      To: "[field0 file="callee.csv"]" <sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port]>
+      Call-ID: [call_id]
+      CSeq: 1 INVITE
+      Contact: sip:[field1 file="caller.csv"]@[local_ip]:[local_port]
+      Max-Forwards: 70
+      Subject:[field0 file="subject.csv"]
+      Content-Type: application/sdp
+      Content-Length: [len]
+
+      v=0
+      o=[pid]SIPpO[call_number] [$secs_int] [$usecs_int] IN IP[local_ip_type] [local_ip]
+      s=-
+      c=IN IP[media_ip_type] [media_ip]
+      t=0 0
+      m=audio [media_port] RTP/AVP 0
+      a=rtpmap:0 PCMU/8000
+
+    ]]>
+  </send>
+
+  <recv response="100" optional="true">
+  </recv>
+
+  <recv response="180" optional="true">
+  </recv>
+
+  <recv response="200" rtd="true">
+  </recv>
+
+  <send>
+    <![CDATA[
+
+      ACK sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port] SIP/2.0
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+      From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag00[call_number]
+      To: "[field0 file="callee.csv"]" <sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port]>[peer_tag_param]
+      Call-ID: [call_id]
+      CSeq: 1 ACK
+      Contact: sip:[field1 file="caller.csv"]@[local_ip]:[local_port]
+      Max-Forwards: 70
+      Subject:[field0 file="subject.csv"]
+      Content-Length: 0
+
+    ]]>
+  </send>
+
+  <pause milliseconds="1000"/>
+
+  <send retrans="500">
+    <![CDATA[
+
+      OPTIONS sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port] SIP/2.0
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+      From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag00[call_number]
+      To: "[field0 file="callee.csv"]" <sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port]>[peer_tag_param]
+      Call-ID: [call_id]
+      CSeq: 2 OPTIONS
+      Contact: sip:[field1 file="caller.csv"]@[local_ip]:[local_port]
+      Max-Forwards: 70
+      Subject:[field0 file="subject.csv"]
+      Content-Length: 0
+
+    ]]>
+  </send>
+
+  <recv response="200">
+  </recv>
+
+  <pause milliseconds="1000"/>
+
+  <send retrans="500">
+    <![CDATA[
+
+      BYE sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port] SIP/2.0
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+      From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag00[call_number]
+      To: "[field0 file="callee.csv"]" <sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port]>[peer_tag_param]
+      Call-ID: [call_id]
+      CSeq: 3 BYE
+      Contact: sip:[field1 file="caller.csv"]@[local_ip]:[local_port]
+      Max-Forwards: 70
+      Subject:[field0 file="subject.csv"]
+      Content-Length: 0
+
+    ]]>
+  </send>
+
+  <recv response="200" crlf="true">
+  </recv>
+
+  <ResponseTimeRepartition value="10, 20, 30, 40, 50, 100, 150, 200"/>
+  <CallLengthRepartition value="10, 50, 100, 500, 1000, 5000, 10000"/>
+
+</scenario>

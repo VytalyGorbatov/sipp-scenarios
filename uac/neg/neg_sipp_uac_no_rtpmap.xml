@@ -42,8 +42,7 @@
       s=-
       c=IN IP[local_ip_type] [local_ip]
       t=0 0
-      m=audio [auto_media_port] RTP/AVP 9 101
-      a=rtpmap:9 G722/8000
+      m=audio [auto_media_port] RTP/AVP 8 0 9 101
       a=rtpmap:101 telephone-event/8000
       a=fmtp:101 0-11,16
 
@@ -76,21 +75,10 @@
       Contact: sip:[field1 file="caller.csv"]@[local_ip]:[local_port]
       Max-Forwards: 70
       Subject:[field0 file="subject.csv"]
-      Content-Length: 0
+      Content-Length: [len]
 
     ]]>
   </send>
-
-  <!-- Play a pre-recorded PCAP file (RTP stream)                       -->
-  <nop>
-    <action>
-      <exec play_pcap_audio="../g722.pcap"/>
-    </action>
-  </nop>
-
-  <!-- Pause 90 seconds, which is approximately the duration of the      -->
-  <!-- PCAP file                                                        -->
-  <pause milliseconds="90000"/>
 
   <!-- The 'crlf' option inserts a blank line in the statistics report. -->
   <send retrans="500">
@@ -105,7 +93,7 @@
       Contact: sip:[field1 file="caller.csv"]@[local_ip]:[local_port]
       Max-Forwards: 70
       Subject:[field0 file="subject.csv"]
-      Content-Length: 0
+      Content-Length: [len]
 
     ]]>
   </send>
@@ -120,4 +108,3 @@
   <CallLengthRepartition value="10, 50, 100, 500, 1000, 5000, 10000"/>
 
 </scenario>
-
