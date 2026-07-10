@@ -44,7 +44,7 @@
       SIP/2.0 100 Trying
       [last_Via:]
       [last_From:]
-      [last_To:];tag=[pid]SIPpTag01[call_number]
+      [last_To:];tag=[pid]SIPpTag
       [last_Call-ID:]
       [last_CSeq:]
       Contact: <sip:[local_ip]:[local_port];transport=[transport]>
@@ -59,7 +59,7 @@
       SIP/2.0 407 Proxy Authentication Required
       [last_Via:]
       [last_From:]
-      [last_To:];tag=[pid]SIPpTag01[call_number]
+      [last_To:];tag=[pid]SIPpTag
       [last_Call-ID:]
       [last_CSeq:]
       Proxy-Authenticate: Digest realm="local", nonce="4cdbb733645816512687270b83d2ae5d11e4d9d8"
@@ -81,7 +81,7 @@
      SIP/2.0 408 Timeout
      [last_Via:]
      [last_From:]
-     [last_To:];tag=[pid]SIPpTag01[call_number]
+     [last_To:];tag=[pid]SIPpTag
      [last_Call-ID:]
      [last_CSeq:]
      Contact: <sip:[local_ip]:[local_port];transport=[transport]>
@@ -96,7 +96,7 @@
       SIP/2.0 200 OK
       [last_Via:]
       [last_From:]
-      [last_To:];tag=[pid]SIPpTag01[call_number]
+      [last_To:];tag=[pid]SIPpTag
       [last_Call-ID:]
       [last_CSeq:]
       Contact: <sip:[local_ip]:[local_port];transport=[transport]>

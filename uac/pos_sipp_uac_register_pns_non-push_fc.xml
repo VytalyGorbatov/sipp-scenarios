@@ -10,15 +10,14 @@
 REGISTER sip:[field2 file="callee.csv"] SIP/2.0
 Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
 Max-Forwards: 70
-From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag00[call_number]
+From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag
 To: "[field0 file="callee.csv"]" <sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port]>
 Call-ID: [call_id]
 CSeq: 7 REGISTER
 Contact: <sip:[field1 file="caller.csv"]@[local_ip]:[local_port];pn-provider=[field0 file=pn_providers.csv];pn-param=[field0 file=pn_providers.csv]-param;pn-prid=[field0 file=pn_providers.csv]-psn-user-[field0]>;+sip.pnsreg
 Feature-Caps: *;+sip.pns="[field0 file=pn_providers.csv]";+sip.pnsreg="121"	
 Expires: 3600
-Content-Length: [len]
-User-Agent: SIPp
+Content-Length: 0
 ]]>
 </send>
 
@@ -33,15 +32,14 @@ User-Agent: SIPp
 REGISTER sip:[field2 file="callee.csv"] SIP/2.0
 Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
 Max-Forwards: 70
-From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag00[call_number]
+From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag
 To: "[field0 file="callee.csv"]" <sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port]>
 Call-ID: [call_id]
 CSeq: 8 REGISTER
 Contact: <sip:[field1 file="caller.csv"]@[local_ip]:[local_port];pn-provider=[field0 file=pn_providers.csv];pn-param=[field0 file=pn_providers.csv]-param;pn-prid=[field0 file=pn_providers.csv]-psn-user-[field0]>;+sip.pnsreg
 Feature-Caps: *;+sip.pns="[field0 file=pn_providers.csv]";+sip.pnsreg="121"	
 Expires: 3600
-Content-Length: [len]
-User-Agent: SIPp
+Content-Length: 0
 [field2]
 ]]>
 </send>

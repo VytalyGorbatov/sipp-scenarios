@@ -43,7 +43,7 @@
       SIP/2.0 180 Ringing
       [last_Via:]
       [last_From:]
-      [last_To:];tag=[pid]SIPpTag01[call_number]
+      [last_To:];tag=[pid]SIPpTag
       [last_Call-ID:]
       [last_CSeq:]
       Contact: <sip:[local_ip]:[local_port];transport=[transport]>
@@ -58,7 +58,7 @@
       SIP/2.0 491 Request Pending
       [last_Via:]
       [last_From:]
-      [last_To:];tag=[pid]SIPpTag01[call_number]
+      [last_To:];tag=[pid]SIPpTag
       [last_Call-ID:]
       [last_CSeq:]
       Content-Length: 0

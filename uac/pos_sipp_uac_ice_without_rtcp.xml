@@ -37,11 +37,11 @@
 
       INVITE sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port] SIP/2.0
       Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-      From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag00[call_number]
+      From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag
       To: "[field0 file="callee.csv"]" <sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port]>
       Call-ID: [call_id]
       CSeq: 1 INVITE
-      Contact: sip:[field1 file="caller.csv"]@[local_ip]:[local_port]
+      Contact: <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>
       Max-Forwards: 70
       Subject:[field0 file="subject.csv"]
       Content-Type: application/sdp
@@ -88,14 +88,14 @@
 
       ACK sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port] SIP/2.0
       Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-      From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag00[call_number]
+      From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag
       To: "[field0 file="callee.csv"]" <sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port]>
       Call-ID: [call_id]
       CSeq: 1 ACK
-      Contact: sip:[field1 file="caller.csv"]@[local_ip]:[local_port]
+      Contact: <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>
       Max-Forwards: 70
       Subject:[field0 file="subject.csv"]
-      Content-Length: [len]
+      Content-Length: 0
 
     ]]>
   </send>
@@ -110,14 +110,14 @@
 
       BYE sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port] SIP/2.0
       Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-      From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag00[call_number]
+      From: "[field0 file="caller.csv"]" <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>;tag=[pid]SIPpTag
       To: "[field0 file="callee.csv"]" <sip:[field2 file="callee.csv"]@[remote_ip]:[remote_port]>
       Call-ID: [call_id]
       CSeq: 2 BYE
-      Contact: sip:[field1 file="caller.csv"]@[local_ip]:[local_port]
+      Contact: <sip:[field1 file="caller.csv"]@[local_ip]:[local_port]>
       Max-Forwards: 70
       Subject:[field0 file="subject.csv"]
-      Content-Length: [len]
+      Content-Length: 0
 
     ]]>
   </send>
